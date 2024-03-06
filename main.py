@@ -53,12 +53,16 @@ def toggle():
   
     global switch_value 
     if switch_value == True: 
-        songlist.config(bg="#534e69", fg="white")
-        control_frame.config(bg="#534e69")
-        play_btn.config(bg="#534e69")
-        pause_btn.config(bg="#534e69")
-        next_btn.config(bg="#534e69")
-        prev_btn.config(bg="#534e69")
+        play_btn.config(image=play_btn_w_img)
+        pause_btn.config(image=pause_btn_w_img)
+        next_btn.config(image=next_btn_w_img)
+        prev_btn.config(image=prev_btn_w_img)
+        songlist.config(bg="#26242f", fg="white")
+        control_frame.config(bg="#26242f")
+        play_btn.config(bg="#26242f")
+        pause_btn.config(bg="#26242f")
+        next_btn.config(bg="#26242f")
+        prev_btn.config(bg="#26242f")
         title.config(bg="#26242f", fg="white")
         btn_select_mode.configure(fg_color="#26242f", 
                       border_color="white",
@@ -74,7 +78,11 @@ def toggle():
         root.config(bg="#26242f")   
         switch_value = False
   
-    else: 
+    else:
+        play_btn.config(image=play_btn_image)
+        pause_btn.config(image=pause_btn_image)
+        next_btn.config(image=next_btn_image)
+        prev_btn.config(image=prev_btn_image) 
         songlist.config(bg="white", fg="black")
         control_frame.config(bg="white")
         play_btn.config(bg="white")
@@ -183,6 +191,11 @@ pause_btn_image = PhotoImage(file= "assets/pause.png")
 next_btn_image = PhotoImage(file= "assets/next.png")
 prev_btn_image = PhotoImage(file= "assets/previous.png")
 
+play_btn_w_img = PhotoImage(file="assets/playW.png")
+pause_btn_w_img = PhotoImage(file="assets/pauseW.png")
+next_btn_w_img = PhotoImage(file="assets/nextW.png")
+prev_btn_w_img = PhotoImage(file="assets/prevoiusW.png")
+ 
 s = ttk.Style()
 s.theme_use('alt')
 s.configure("blue.Horizontal.TProgressbar", troughcolor = 'white', background = '#0078d7', bordercolor = "white", darkcolor = "#0078d7", lightcolor = "white" )
