@@ -12,7 +12,7 @@ root = Tk()
 root.config(bg="white")
 root.iconbitmap("assets/boombox.ico")
 root.title("Music Player")
-root.geometry("800x600")
+root.geometry("800x650")
 
 
 pygame.mixer.init()
