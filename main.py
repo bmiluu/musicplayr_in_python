@@ -1,6 +1,7 @@
 from tkinter.ttk import Progressbar
 from tkinter import filedialog
 from tkinter import *
+from tkinter import ttk
 import customtkinter as ctk
 import pygame
 import os
@@ -13,10 +14,12 @@ root.iconbitmap("assets/boombox.ico")
 root.title("Music Player")
 root.geometry("600x500")
 
+
 pygame.mixer.init()
 
 title = Label(root, text="Music Player", font=("TkDefaultFont", 30, "bold"), bg="white")
 title.pack(pady=10)
+
 
 def load_music():
     global current_song
@@ -180,6 +183,12 @@ pause_btn_image = PhotoImage(file= "assets/pause.png")
 next_btn_image = PhotoImage(file= "assets/next.png")
 prev_btn_image = PhotoImage(file= "assets/previous.png")
 
+s = ttk.Style()
+s.theme_use('alt')
+s.configure("blue.Horizontal.TProgressbar", troughcolor = 'white', background = '#0078d7', bordercolor = "white", darkcolor = "#0078d7", lightcolor = "white" )
+pbar = Progressbar(root, length=300, mode="determinate", style="blue.Horizontal.TProgressbar")
+pbar.pack(pady=10)
+
 control_frame = Frame(root, bg="white")
 control_frame.pack(pady=20)
 
@@ -193,7 +202,5 @@ pause_btn.grid(row=0,column=2,padx=7,pady=10)
 next_btn.grid(row=0,column=3,padx=7,pady=10)
 prev_btn.grid(row=0,column=0,padx=7,pady=10)
 
-pbar = Progressbar(root, length=300, mode="determinate")
-pbar.pack(pady=10)
 
 root.mainloop()
