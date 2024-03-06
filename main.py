@@ -12,7 +12,7 @@ root = Tk()
 root.config(bg="white")
 root.iconbitmap("assets/boombox.ico")
 root.title("Music Player")
-root.geometry("600x500")
+root.geometry("800x600")
 
 
 pygame.mixer.init()
@@ -53,11 +53,12 @@ def toggle():
   
     global switch_value 
     if switch_value == True: 
-        play_btn.config(image=play_btn_w_img)
-        pause_btn.config(image=pause_btn_w_img)
-        next_btn.config(image=next_btn_w_img)
-        prev_btn.config(image=prev_btn_w_img)
-        songlist.config(bg="#26242f", fg="white")
+        btn_select_mode.configure(image=dark_mode)
+        play_btn.config(image=play_btn_w_img, activebackground="#26242f")
+        pause_btn.config(image=pause_btn_w_img, activebackground="#26242f")
+        next_btn.config(image=next_btn_w_img, activebackground="#26242f")
+        prev_btn.config(image=prev_btn_w_img, activebackground="#26242f")
+        songlist.config(bg="#363342", fg="white")
         control_frame.config(bg="#26242f")
         play_btn.config(bg="#26242f")
         pause_btn.config(bg="#26242f")
@@ -79,10 +80,11 @@ def toggle():
         switch_value = False
   
     else:
-        play_btn.config(image=play_btn_image)
-        pause_btn.config(image=pause_btn_image)
-        next_btn.config(image=next_btn_image)
-        prev_btn.config(image=prev_btn_image) 
+        btn_select_mode.configure(image=light_mode)
+        play_btn.config(image=play_btn_image, activebackground="white")
+        pause_btn.config(image=pause_btn_image, activebackground="white")
+        next_btn.config(image=next_btn_image, activebackground="white")
+        prev_btn.config(image=prev_btn_image, activebackground="white") 
         songlist.config(bg="white", fg="black")
         control_frame.config(bg="white")
         play_btn.config(bg="white")
@@ -103,14 +105,13 @@ def toggle():
         root.config(bg="white")   
         switch_value = True
   
+light_mode = PhotoImage(file="assets/light_mode.png")
+dark_mode = PhotoImage(file="assets/dark_mode.png")
 
 btn_select_mode = ctk.CTkButton(root, 
-                                text="Change Theme", 
-                                font=("TkDefaultFont", 18), 
-                                command=toggle, 
-                                text_color="black",
-                                border_color="black",
-                                border_width=1, 
+                                image=light_mode, 
+                                command=toggle,
+                                text='',
                                 fg_color="white",
                                 hover_color="white")
 btn_select_mode.pack(padx = 10)
@@ -168,7 +169,9 @@ def next_music():
         current_song = songs[songlist.curselection()[0]]
         play_music()
     except:
-        pass
+        songlist.selection_set(0)
+        current_song = songs[songlist.curselection()[0]]
+        stop_music()
 
 def prev_music():
     global current_song, paused
@@ -205,10 +208,10 @@ pbar.pack(pady=10)
 control_frame = Frame(root, bg="white")
 control_frame.pack(pady=20)
 
-play_btn = Button(control_frame, image=play_btn_image, borderwidth=0, command=play_music, bg="white")
-pause_btn = Button(control_frame, image=pause_btn_image, borderwidth=0, command=pause_music, bg="white")
-next_btn = Button(control_frame, image=next_btn_image, borderwidth=0, command=next_music, bg="white")
-prev_btn = Button(control_frame, image=prev_btn_image, borderwidth=0, command=prev_music, bg="white")
+play_btn = Button(control_frame, image=play_btn_image, borderwidth=0, command=play_music, bg="white", activebackground="white")
+pause_btn = Button(control_frame, image=pause_btn_image, borderwidth=0, command=pause_music, bg="white", activebackground="white")
+next_btn = Button(control_frame, image=next_btn_image, borderwidth=0, command=next_music, bg="white", activebackground="white")
+prev_btn = Button(control_frame, image=prev_btn_image, borderwidth=0, command=prev_music, bg="white", activebackground="white")
 
 play_btn.grid(row=0,column=1,padx=7,pady=10)
 pause_btn.grid(row=0,column=2,padx=7,pady=10)
