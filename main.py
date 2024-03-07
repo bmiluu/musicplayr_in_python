@@ -13,6 +13,7 @@ root.config(bg="white")
 root.iconbitmap("assets/boombox.ico")
 root.title("Music Player")
 root.geometry("800x650")
+root.resizable(0, 0)
 
 
 pygame.mixer.init()
