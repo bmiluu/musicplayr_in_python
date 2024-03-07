@@ -167,6 +167,7 @@ def next_music():
         songlist.select_clear(0, END)
         songlist.selection_set(songs.index(current_song) + 1)
         current_song = songs[songlist.curselection()[0]]
+        paused = False
         play_music()
     except:
         songlist.selection_set(0)
